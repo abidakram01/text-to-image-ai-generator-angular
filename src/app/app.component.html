@@ -1,0 +1,88 @@
+<div class="container">
+  <header class="header">
+    <div class="logo-wrapper">
+      <div class="logo">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+      </div>
+      <h1>AI Image Generator</h1>
+    </div>
+    <button class="theme-toggle" (click)="toggleTheme()">
+      <i [ngClass]="isDarkTheme ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"></i>
+    </button>
+  </header>
+
+  <div class="main-content">
+    <form class="prompt-form" (ngSubmit)="handleFormSubmit()">
+      <div class="prompt-container">
+        <textarea class="prompt-input" [(ngModel)]="promptText" name="prompt"
+          placeholder="Describe your imagination in details..." autofocus>
+        </textarea>
+        <button type="button" class="prompt-btn" (click)="fillRandomPrompt()">
+          <i class="fa-solid fa-dice"></i>
+        </button>
+      </div>
+
+      <div class="prompt-actions">
+        <div class="select-wrapper">
+          <select class="custom-select" [(ngModel)]="selectedModel" name="model">
+            <option value="" disabled selected>Select Model</option>
+            <option *ngFor="let model of models" [value]="model.value">{{ model.name }}</option>
+          </select>
+        </div>
+
+
+        <div class="select-wrapper">
+          <select class="custom-select" [(ngModel)]="imageCount" name="count">
+            <option value="" disabled selected>Image Count</option>
+            <option *ngFor="let count of [1,2,3,4]" [value]="count">{{ count }} Image</option>
+          </select>
+        </div>
+
+
+        <div class="select-wrapper">
+          <select class="custom-select" [(ngModel)]="aspectRatio" name="aspectRatio">
+            <option value="" disabled selected>Aspect Ratio</option>
+            <option value="1/1">Square (1:1)</option>
+            <option value="16/9">Landscape (16:9)</option>
+            <option value="9/16">Portrait (9:16)</option>
+          </select>
+        </div>
+
+
+        <button type="submit" class="generate-btn"
+          [disabled]="!promptText || !selectedModel || !imageCount || !aspectRatio || isLoading">
+          <i class="fa-solid fa-wand-sparkles"></i>
+          Generate
+        </button>
+      </div>
+
+      <div class="gallery-grid" *ngIf="generatedImages.length > 0">
+        <div class="img-card" *ngFor="let img of generatedImages; let i = index" [id]="'img-card-' + i"
+          [ngClass]="{ loading: img.loading, error: img.error }" [style.aspectRatio]="aspectRatio">
+          
+          <!-- Show spinner and status while loading -->
+          <div *ngIf="img.loading" class="status-container">
+            <div class="spinner"></div>
+            <p class="status-text">Generating...</p>
+          </div>
+      
+          <!-- Show error icon and message if there's an error -->
+          <div *ngIf="img.error" class="status-container">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <p class="status-text">Error generating image</p>
+          </div>
+      
+          <!-- Show the generated image if no error and not loading -->
+          <ng-container *ngIf="!img.loading && !img.error">
+            <img [src]="img.url" class="result-img" alt="Generated Image" />
+            <div class="img-overlay">
+              <a [href]="img.url" class="img-download-btn" [attr.download]="img.filename">
+                <i class="fa-solid fa-download"></i>
+              </a>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
