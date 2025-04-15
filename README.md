@@ -7,7 +7,7 @@ A sleek, modern web application built with **Angular** that turns your text prom
 
 ## 🚀 Live Demo
 
-🔗 [View Live](https://your-deployment-link.com)
+🔗 [https://text-2-image-ai-generator.netlify.app](https://text-2-image-ai-generator.netlify.app)
 
 ---
 
