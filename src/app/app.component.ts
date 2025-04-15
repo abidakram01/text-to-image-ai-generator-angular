@@ -29,29 +29,30 @@ export class AppComponent {
 
   // Available models for image generation
   models = [
-    { name: 'FLUX AI', value: 'black-forest-labs/FLUX.1-dev' },
-    { name: 'Schnell AI', value: 'black-forest-labs/FLUX.1-schnell' },
+    { name: 'FLUX Dev Model', value: 'black-forest-labs/FLUX.1-dev' },
+    { name: 'Schnell Model', value: 'black-forest-labs/FLUX.1-schnell' },
+    { name: 'Stable Diffusion Model', value: 'stabilityai/stable-diffusion-xl-base-1.0' }
   ];
 
   constructor(private imageService: ImageService) { } // Injects ImageService for generating images
 
   // Sample prompts that users can randomly select from
   examplePrompts = [
-    "A magic forest with glowing plants and fairy homes among giant mushrooms",
-    "An old steampunk airship floating through golden clouds at sunset",
-    "A future Mars colony with glass domes and gardens against red mountains",
-    "A dragon sleeping on gold coins in a crystal cave",
-    "An underwater kingdom with merpeople and glowing coral buildings",
-    "A floating island with waterfalls pouring into clouds below",
-    "A witch's cottage in fall with magic herbs in the garden",
-    "A robot painting in a sunny studio with art supplies around it",
-    "A magical library with floating glowing books and spiral staircases",
-    "A Japanese shrine during cherry blossom season with lanterns and misty mountains",
-    "A cosmic beach with glowing sand and an aurora in the night sky",
-    "A medieval marketplace with colorful tents and street performers",
-    "A cyberpunk city with neon signs and flying cars at night",
-    "A peaceful bamboo forest with a hidden ancient temple",
-    "A giant turtle carrying a village on its back in the ocean",
+    "A desert oasis at twilight with bioluminescent plants and crystal-clear waters",
+    "A forgotten sky temple floating among the stars with ancient glowing runes",
+    "A mystical train station where portals open to different worlds",
+    "A snowy village built inside a giant tree with lanterns hanging from branches",
+    "A moonlit tea party with ghosts, owls, and enchanted teapots in a haunted garden",
+    "A deep jungle temple overgrown with nature and guarded by stone animal spirits",
+    "A futuristic underwater subway system with glass tunnels and glowing fish",
+    "A mountaintop observatory powered by lightning and floating crystals",
+    "A fantasy market on the back of a flying whale drifting through the skies",
+    "A neon-lit forest where trees react to music and dance with light",
+    "A dreamscape city where gravity shifts and buildings float in mid-air",
+    "An ancient dragon graveyard turned into a peaceful sanctuary with cherry trees",
+    "A lighthouse on a floating rock guiding skyships through a starlit storm",
+    "A magical bakery where pastries float, and ingredients glow with spells",
+    "An interdimensional bazaar with merchants from different galaxies",
   ];
 
   // Runs when component initializes
